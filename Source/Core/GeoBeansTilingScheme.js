@@ -50,11 +50,6 @@ function GeoBeansTilingScheme(options) {
     this._numberOfLevelZeroTilesX = defaultValue(options.numberOfLevelZeroTilesX, 1);
     this._numberOfLevelZeroTilesY = defaultValue(options.numberOfLevelZeroTilesY, 1);
 
-	/**
-	  * 2) 设置空间范围，由于GeoBeans的切图方式和GoogleQuad84的切图参数不一致。
-	  */
-    var value = Math.PI * 256.0 / 180.0;
-    this.rectangle = new Cesium.Rectangle(-value, -value, value, value);
 }
 
 defineProperties(GeoBeansTilingScheme.prototype, {
