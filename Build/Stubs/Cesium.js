@@ -357,6 +357,10 @@ define('Core/Fullscreen', function() {
     return Cesium['Fullscreen'];
 });
 
+define('Core/GeoBeansTilingScheme', function() {
+    return Cesium['GeoBeansTilingScheme'];
+});
+
 define('Core/GeocoderService', function() {
     return Cesium['GeocoderService'];
 });

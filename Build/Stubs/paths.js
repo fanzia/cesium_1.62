@@ -90,6 +90,7 @@ define(function() {
         'Core/FrustumGeometry' : '../Stubs/Cesium',
         'Core/FrustumOutlineGeometry' : '../Stubs/Cesium',
         'Core/Fullscreen' : '../Stubs/Cesium',
+        'Core/GeoBeansTilingScheme' : '../Stubs/Cesium',
         'Core/GeocoderService' : '../Stubs/Cesium',
         'Core/GeocodeType' : '../Stubs/Cesium',
         'Core/GeographicProjection' : '../Stubs/Cesium',
