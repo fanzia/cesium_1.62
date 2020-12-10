@@ -40,11 +40,31 @@ define([
     function GeographicTilingScheme(options) {
         options = defaultValue(options, defaultValue.EMPTY_OBJECT);
 
-        this._ellipsoid = defaultValue(options.ellipsoid, Ellipsoid.WGS84);
-        this._rectangle = defaultValue(options.rectangle, Rectangle.MAX_VALUE);
-        this._projection = new GeographicProjection(this._ellipsoid);
-        this._numberOfLevelZeroTilesX = defaultValue(options.numberOfLevelZeroTilesX, 2);
-        this._numberOfLevelZeroTilesY = defaultValue(options.numberOfLevelZeroTilesY, 1);
+        // this._ellipsoid = defaultValue(options.ellipsoid, Ellipsoid.WGS84);
+        // this._rectangle = defaultValue(options.rectangle, Rectangle.MAX_VALUE);
+        // this._projection = new GeographicProjection(this._ellipsoid);
+        // this._numberOfLevelZeroTilesX = defaultValue(options.numberOfLevelZeroTilesX, 2);
+        // this._numberOfLevelZeroTilesY = defaultValue(options.numberOfLevelZeroTilesY, 1);
+        if( defined(options.tileInfo) 
+               && defined(options.tileInfo.spatialReference) 
+               && defined(options.tileInfo.spatialReference.wkid)
+               && options.tileInfo.spatialReference.wkid == 4490 )
+           {
+               this._tileInfo = options.tileInfo;
+               this._ellipsoid = defaultValue(options.ellipsoid, Ellipsoid.CGCS2000);
+               this._rectangle = defaultValue(options.rectangle, Rectangle.fromDegrees(-180, -90, 180, 90));
+               this._numberOfLevelZeroTilesX = defaultValue(options.numberOfLevelZeroTilesX, 4);
+               this._numberOfLevelZeroTilesY = defaultValue(options.numberOfLevelZeroTilesY, 2);
+           }
+           else 
+           {
+               this._ellipsoid = defaultValue(options.ellipsoid, Ellipsoid.WGS84);
+               this._rectangle = defaultValue(options.rectangle, Rectangle.MAX_VALUE);
+               this._numberOfLevelZeroTilesX = defaultValue(options.numberOfLevelZeroTilesX, 2);
+               this._numberOfLevelZeroTilesY = defaultValue(options.numberOfLevelZeroTilesY, 1);
+           }
+        
+           this._projection = new GeographicProjection(this._ellipsoid);
     }
 
     defineProperties(GeographicTilingScheme.prototype, {
@@ -89,7 +109,19 @@ define([
      * @returns {Number} The number of tiles in the X direction at the given level.
      */
     GeographicTilingScheme.prototype.getNumberOfXTilesAtLevel = function(level) {
-        return this._numberOfLevelZeroTilesX << level;
+        // return this._numberOfLevelZeroTilesX << level;
+        if(!defined(this._tileInfo))
+        {
+            return this._numberOfLevelZeroTilesX << level;
+        }
+        else 
+        {
+            var currentMatrix = this._tileInfo.lods.filter(function(item){
+                return item.level === level;
+            });
+            var currentResolution = currentMatrix[0].resolution;
+            return Math.round(CesiumMath.toDegrees(CesiumMath.TWO_PI) / (this._tileInfo.rows * currentResolution));
+        }
     };
 
     /**
@@ -99,7 +131,19 @@ define([
      * @returns {Number} The number of tiles in the Y direction at the given level.
      */
     GeographicTilingScheme.prototype.getNumberOfYTilesAtLevel = function(level) {
-        return this._numberOfLevelZeroTilesY << level;
+        // return this._numberOfLevelZeroTilesY << level;
+        if(!defined(this._tileInfo))
+        {
+            return this._numberOfLevelZeroTilesY << level;
+        }
+        else 
+        {
+            var currentMatrix = this._tileInfo.lods.filter(function(item){
+                return item.level === level;
+            });
+            var currentResolution = currentMatrix[0].resolution;
+            return Math.round(CesiumMath.toDegrees(CesiumMath.TWO_PI / 2) / (this._tileInfo.cols * currentResolution));
+        }
     };
 
     /**
@@ -166,23 +210,74 @@ define([
      *          if 'result' is undefined.
      */
     GeographicTilingScheme.prototype.tileXYToRectangle = function(x, y, level, result) {
+        // var rectangle = this._rectangle;
+
+        // var xTiles = this.getNumberOfXTilesAtLevel(level);
+        // var yTiles = this.getNumberOfYTilesAtLevel(level);
+
+        // var xTileWidth = rectangle.width / xTiles;
+        // var west = x * xTileWidth + rectangle.west;
+        // var east = (x + 1) * xTileWidth + rectangle.west;
+
+        // var yTileHeight = rectangle.height / yTiles;
+        // var north = rectangle.north - y * yTileHeight;
+        // var south = rectangle.north - (y + 1) * yTileHeight;
+
+        // if (!defined(result)) {
+        //     result = new Rectangle(west, south, east, north);
+        // }
+
+        // result.west = west;
+        // result.south = south;
+        // result.east = east;
+        // result.north = north;
+        // return result;
         var rectangle = this._rectangle;
-
-        var xTiles = this.getNumberOfXTilesAtLevel(level);
-        var yTiles = this.getNumberOfYTilesAtLevel(level);
-
-        var xTileWidth = rectangle.width / xTiles;
-        var west = x * xTileWidth + rectangle.west;
-        var east = (x + 1) * xTileWidth + rectangle.west;
-
-        var yTileHeight = rectangle.height / yTiles;
-        var north = rectangle.north - y * yTileHeight;
-        var south = rectangle.north - (y + 1) * yTileHeight;
-
+        
+        var west = 0;
+        var east = 0;
+        
+        var north = 0;
+        var south = 0;
+        
+        if(defined(this._tileInfo))
+        {
+            var currentMatrix = this._tileInfo.lods.filter(function(item){
+                return item.level === level;
+            });
+            var currentResolution = currentMatrix[0].resolution;
+        
+            north = this._tileInfo.origin.y - y * (this._tileInfo.cols * currentResolution);
+            west = this._tileInfo.origin.x + x * (this._tileInfo.rows * currentResolution);
+        
+            south = this._tileInfo.origin.y - (y + 1) * (this._tileInfo.cols * currentResolution);
+            east = this._tileInfo.origin.x + (x + 1) * (this._tileInfo.rows * currentResolution);
+        
+            west = CesiumMath.toRadians(west);
+            north = CesiumMath.toRadians(north);
+            east = CesiumMath.toRadians(east);
+            south = CesiumMath.toRadians(south);
+        }
+        else 
+        {
+            var xTiles = this.getNumberOfXTilesAtLevel(level);
+            var yTiles = this.getNumberOfYTilesAtLevel(level);
+        
+            var xTileWidth = rectangle.width / xTiles;
+            west = x * xTileWidth + rectangle.west;
+            east = (x + 1) * xTileWidth + rectangle.west;
+        
+            var yTileHeight = rectangle.height / yTiles;
+            north = rectangle.north - y * yTileHeight;
+            south = rectangle.north - (y + 1) * yTileHeight;
+        }
+        
+        
+        
         if (!defined(result)) {
             result = new Rectangle(west, south, east, north);
         }
-
+        
         result.west = west;
         result.south = south;
         result.east = east;
@@ -207,6 +302,22 @@ define([
             // outside the bounds of the tiling scheme
             return undefined;
         }
+
+          if(defined(this._tileInfo))
+            {
+                var currentMatrix = this._tileInfo.lods.filter(function(item){
+                    return item.level === level;
+                });
+                var currentResolution = currentMatrix[0].resolution;
+                
+                var degLon = CesiumMath.toDegrees(position.longitude);
+                var degLat = CesiumMath.toDegrees(position.latitude);
+         
+                var x_4490 = Math.floor( (degLon - this._tileInfo.origin.x) / (this._tileInfo.rows * currentResolution) );
+                var y_4490 = Math.floor( (this._tileInfo.origin.y - degLat) / (this._tileInfo.cols * currentResolution) );
+         
+                return new Cartesian2(x_4490, y_4490);
+            }
 
         var xTiles = this.getNumberOfXTilesAtLevel(level);
         var yTiles = this.getNumberOfYTilesAtLevel(level);

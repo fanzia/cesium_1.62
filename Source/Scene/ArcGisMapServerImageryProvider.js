@@ -174,6 +174,12 @@ define([
                     that._tilingScheme = new WebMercatorTilingScheme({ ellipsoid : options.ellipsoid });
                 } else if (data.tileInfo.spatialReference.wkid === 4326) {
                     that._tilingScheme = new GeographicTilingScheme({ ellipsoid : options.ellipsoid });
+                } else if(data.tileInfo.spatialReference.wkid === 4490){
+                    that._tilingScheme = new GeographicTilingScheme({ 
+                        ellipsoid : options.ellipsoid,
+                        tileInfo:data.tileInfo
+                    });
+
                 } else {
                     var message = 'Tile spatial reference WKID ' + data.tileInfo.spatialReference.wkid + ' is not supported.';
                     metadataError = TileProviderError.handleError(metadataError, that, that._errorEvent, message, undefined, undefined, undefined, requestMetadata);
@@ -191,7 +197,7 @@ define([
                             var sw = projection.unproject(new Cartesian3(Math.max(extent.xmin, -that._tilingScheme.ellipsoid.maximumRadius * Math.PI), Math.max(extent.ymin, -that._tilingScheme.ellipsoid.maximumRadius * Math.PI), 0.0));
                             var ne = projection.unproject(new Cartesian3(Math.min(extent.xmax, that._tilingScheme.ellipsoid.maximumRadius * Math.PI), Math.min(extent.ymax, that._tilingScheme.ellipsoid.maximumRadius * Math.PI), 0.0));
                             that._rectangle = new Rectangle(sw.longitude, sw.latitude, ne.longitude, ne.latitude);
-                        } else if (data.fullExtent.spatialReference.wkid === 4326) {
+                        } else if (data.fullExtent.spatialReference.wkid === 4326 || data.fullExtent.spatialReference.wkid === 4490) {
                             that._rectangle = Rectangle.fromDegrees(data.fullExtent.xmin, data.fullExtent.ymin, data.fullExtent.xmax, data.fullExtent.ymax);
                         } else {
                             var extentMessage = 'fullExtent.spatialReference WKID ' + data.fullExtent.spatialReference.wkid + ' is not supported.';

@@ -58,8 +58,7 @@
 
 
 <div class="description">
-    Provides tiled imagery hosted by an ArcGIS MapServer.  By default, the server's pre-cached tiles are
-used, if available.
+    Provides tiled imagery hosted by an ArcGIS MapServer.  By default, the server's pre-cached tiles areused, if available.
 </div>
 
 
@@ -231,17 +230,7 @@ used, if available.
 
                 
             
-                The policy that determines if a tile
-       is invalid and should be discarded.  If this value is not specified, a default
-       <a href="DiscardMissingTileImagePolicy.html"><code>DiscardMissingTileImagePolicy</code></a> is used for tiled map servers, and a
-       <a href="NeverTileDiscardPolicy.html"><code>NeverTileDiscardPolicy</code></a> is used for non-tiled map servers.  In the former case,
-       we request tile 0,0 at the maximum tile level and check pixels (0,0), (200,20), (20,200),
-       (80,110), and (160, 130).  If all of these pixels are transparent, the discard check is
-       disabled and no tiles are discarded.  If any of them have a non-transparent color, any
-       tile that has the same values in these pixel locations is discarded.  The end result of
-       these defaults should be correct tile discarding for a standard ArcGIS Server.  To ensure
-       that no tiles are discarded, construct and pass a <a href="NeverTileDiscardPolicy.html"><code>NeverTileDiscardPolicy</code></a> for this
-       parameter.</td>
+                The policy that determines if a tile       is invalid and should be discarded.  If this value is not specified, a default       <a href="DiscardMissingTileImagePolicy.html"><code>DiscardMissingTileImagePolicy</code></a> is used for tiled map servers, and a       <a href="NeverTileDiscardPolicy.html"><code>NeverTileDiscardPolicy</code></a> is used for non-tiled map servers.  In the former case,       we request tile 0,0 at the maximum tile level and check pixels (0,0), (200,20), (20,200),       (80,110), and (160, 130).  If all of these pixels are transparent, the discard check is       disabled and no tiles are discarded.  If any of them have a non-transparent color, any       tile that has the same values in these pixel locations is discarded.  The end result of       these defaults should be correct tile discarding for a standard ArcGIS Server.  To ensure       that no tiles are discarded, construct and pass a <a href="NeverTileDiscardPolicy.html"><code>NeverTileDiscardPolicy</code></a> for this       parameter.</td>
         </tr>
 
     
@@ -277,9 +266,7 @@ used, if available.
 
                 
             
-                If true, the server's pre-cached
-       tiles are used if they are available.  If false, any pre-cached tiles are ignored and the
-       'export' service is used.</td>
+                If true, the server's pre-cached       tiles are used if they are available.  If false, any pre-cached tiles are ignored and the       'export' service is used.</td>
         </tr>
 
     
@@ -349,11 +336,7 @@ used, if available.
 
                 
             
-                If true, <a href="ArcGisMapServerImageryProvider.html#pickFeatures"><code>ArcGisMapServerImageryProvider#pickFeatures</code></a> will invoke
-       the Identify service on the MapServer and return the features included in the response.  If false,
-       <a href="ArcGisMapServerImageryProvider.html#pickFeatures"><code>ArcGisMapServerImageryProvider#pickFeatures</code></a> will immediately return undefined (indicating no pickable features)
-       without communicating with the server.  Set this property to false if you don't want this provider's features to
-       be pickable. Can be overridden by setting the <a href="ArcGisMapServerImageryProvider.html#enablePickFeatures"><code>ArcGisMapServerImageryProvider#enablePickFeatures</code></a> property on the object.</td>
+                If true, <a href="ArcGisMapServerImageryProvider.html#pickFeatures"><code>ArcGisMapServerImageryProvider#pickFeatures</code></a> will invoke       the Identify service on the MapServer and return the features included in the response.  If false,       <a href="ArcGisMapServerImageryProvider.html#pickFeatures"><code>ArcGisMapServerImageryProvider#pickFeatures</code></a> will immediately return undefined (indicating no pickable features)       without communicating with the server.  Set this property to false if you don't want this provider's features to       be pickable. Can be overridden by setting the <a href="ArcGisMapServerImageryProvider.html#enablePickFeatures"><code>ArcGisMapServerImageryProvider#enablePickFeatures</code></a> property on the object.</td>
         </tr>
 
     
@@ -389,8 +372,7 @@ used, if available.
 
                 
             
-                The rectangle of the layer.  This parameter is ignored when accessing
-                   a tiled layer.</td>
+                The rectangle of the layer.  This parameter is ignored when accessing                   a tiled layer.</td>
         </tr>
 
     
@@ -426,8 +408,7 @@ used, if available.
 
                 
             
-                The tiling scheme to use to divide the world into tiles.
-                      This parameter is ignored when accessing a tiled server.</td>
+                The tiling scheme to use to divide the world into tiles.                      This parameter is ignored when accessing a tiled server.</td>
         </tr>
 
     
@@ -461,9 +442,7 @@ used, if available.
 
                 
             
-                The ellipsoid.  If the tilingScheme is specified and used,
-                   this parameter is ignored and the tiling scheme's ellipsoid is used instead. If neither
-                   parameter is specified, the WGS84 ellipsoid is used.</td>
+                The ellipsoid.  If the tilingScheme is specified and used,                   this parameter is ignored and the tiling scheme's ellipsoid is used instead. If neither                   parameter is specified, the WGS84 ellipsoid is used.</td>
         </tr>
 
     
@@ -606,8 +585,7 @@ used, if available.
 
                 
             
-                The maximum tile level to request, or undefined if there is no maximum.  This parameter is ignored when accessing
-                                       a tiled server.</td>
+                The maximum tile level to request, or undefined if there is no maximum.  This parameter is ignored when accessing                                       a tiled server.</td>
         </tr>
 
     
@@ -656,9 +634,7 @@ used, if available.
     
         <h5>Example:</h5>
         
-    <pre><code class="language-javascript">var esri = new Cesium.ArcGisMapServerImageryProvider({
-    url : 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer'
-});</code></pre>
+    <pre><code class="language-javascript">var esri = new Cesium.ArcGisMapServerImageryProvider({    url : 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer'});</code></pre>
 
     
 
@@ -722,7 +698,7 @@ used, if available.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L508">Scene/ArcGisMapServerImageryProvider.js 508</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L514">Scene/ArcGisMapServerImageryProvider.js 514</a>
 </div>
 
 
@@ -733,8 +709,7 @@ used, if available.
 
 
 <div class="description">
-    Gets the credit to display when this imagery provider is active.  Typically this is used to credit
-the source of the imagery.  This function should not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
+    Gets the credit to display when this imagery provider is active.  Typically this is used to creditthe source of the imagery.  This function should not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -794,10 +769,7 @@ the source of the imagery.  This function should not be called before <a href="A
 
 
 <div class="description">
-    Gets or sets a value indicating whether feature picking is enabled.  If true, <a href="ArcGisMapServerImageryProvider.html#pickFeatures"><code>ArcGisMapServerImageryProvider#pickFeatures</code></a> will
-invoke the "identify" operation on the ArcGIS server and return the features included in the response.  If false,
-<a href="ArcGisMapServerImageryProvider.html#pickFeatures"><code>ArcGisMapServerImageryProvider#pickFeatures</code></a> will immediately return undefined (indicating no pickable features)
-without communicating with the server.
+    Gets or sets a value indicating whether feature picking is enabled.  If true, <a href="ArcGisMapServerImageryProvider.html#pickFeatures"><code>ArcGisMapServerImageryProvider#pickFeatures</code></a> willinvoke the "identify" operation on the ArcGIS server and return the features included in the response.  If false,<a href="ArcGisMapServerImageryProvider.html#pickFeatures"><code>ArcGisMapServerImageryProvider#pickFeatures</code></a> will immediately return undefined (indicating no pickable features)without communicating with the server.
 </div>
 
 
@@ -849,7 +821,7 @@ without communicating with the server.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L471">Scene/ArcGisMapServerImageryProvider.js 471</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L477">Scene/ArcGisMapServerImageryProvider.js 477</a>
 </div>
 
 
@@ -860,9 +832,7 @@ without communicating with the server.
 
 
 <div class="description">
-    Gets an event that is raised when the imagery provider encounters an asynchronous error.  By subscribing
-to the event, you will be notified of the error and can potentially recover from it.  Event listeners
-are passed an instance of <a href="TileProviderError.html"><code>TileProviderError</code></a>.
+    Gets an event that is raised when the imagery provider encounters an asynchronous error.  By subscribingto the event, you will be notified of the error and can potentially recover from it.  Event listenersare passed an instance of <a href="TileProviderError.html"><code>TileProviderError</code></a>.
 </div>
 
 
@@ -911,7 +881,7 @@ are passed an instance of <a href="TileProviderError.html"><code>TileProviderErr
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L543">Scene/ArcGisMapServerImageryProvider.js 543</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L549">Scene/ArcGisMapServerImageryProvider.js 549</a>
 </div>
 
 
@@ -922,11 +892,7 @@ are passed an instance of <a href="TileProviderError.html"><code>TileProviderErr
 
 
 <div class="description">
-    Gets a value indicating whether or not the images provided by this imagery provider
-include an alpha channel.  If this property is false, an alpha channel, if present, will
-be ignored.  If this property is true, any images without an alpha channel will be treated
-as if their alpha is 1.0 everywhere.  When this property is false, memory usage
-and texture upload time are reduced.
+    Gets a value indicating whether or not the images provided by this imagery providerinclude an alpha channel.  If this property is false, an alpha channel, if present, willbe ignored.  If this property is true, any images without an alpha channel will be treatedas if their alpha is 1.0 everywhere.  When this property is false, memory usageand texture upload time are reduced.
 </div>
 
 
@@ -978,7 +944,7 @@ and texture upload time are reduced.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L555">Scene/ArcGisMapServerImageryProvider.js 555</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L561">Scene/ArcGisMapServerImageryProvider.js 561</a>
 </div>
 
 
@@ -1038,7 +1004,7 @@ and texture upload time are reduced.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L373">Scene/ArcGisMapServerImageryProvider.js 373</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L379">Scene/ArcGisMapServerImageryProvider.js 379</a>
 </div>
 
 
@@ -1049,8 +1015,7 @@ and texture upload time are reduced.
 
 
 <div class="description">
-    Gets the maximum level-of-detail that can be requested.  This function should
-not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
+    Gets the maximum level-of-detail that can be requested.  This function shouldnot be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -1099,7 +1064,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L392">Scene/ArcGisMapServerImageryProvider.js 392</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L398">Scene/ArcGisMapServerImageryProvider.js 398</a>
 </div>
 
 
@@ -1110,8 +1075,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
 
 
 <div class="description">
-    Gets the minimum level-of-detail that can be requested.  This function should
-not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
+    Gets the minimum level-of-detail that can be requested.  This function shouldnot be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -1160,7 +1124,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L322">Scene/ArcGisMapServerImageryProvider.js 322</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L328">Scene/ArcGisMapServerImageryProvider.js 328</a>
 </div>
 
 
@@ -1220,7 +1184,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L483">Scene/ArcGisMapServerImageryProvider.js 483</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L489">Scene/ArcGisMapServerImageryProvider.js 489</a>
 </div>
 
 
@@ -1280,7 +1244,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L495">Scene/ArcGisMapServerImageryProvider.js 495</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L501">Scene/ArcGisMapServerImageryProvider.js 501</a>
 </div>
 
 
@@ -1400,7 +1364,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L430">Scene/ArcGisMapServerImageryProvider.js 430</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L436">Scene/ArcGisMapServerImageryProvider.js 436</a>
 </div>
 
 
@@ -1411,8 +1375,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
 
 
 <div class="description">
-    Gets the rectangle, in radians, of the imagery provided by this instance.  This function should
-not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
+    Gets the rectangle, in radians, of the imagery provided by this instance.  This function shouldnot be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -1461,7 +1424,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L451">Scene/ArcGisMapServerImageryProvider.js 451</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L457">Scene/ArcGisMapServerImageryProvider.js 457</a>
 </div>
 
 
@@ -1472,10 +1435,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
 
 
 <div class="description">
-    Gets the tile discard policy.  If not undefined, the discard policy is responsible
-for filtering out "missing" tiles via its shouldDiscardImage function.  If this function
-returns undefined, no tiles are filtered.  This function should
-not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
+    Gets the tile discard policy.  If not undefined, the discard policy is responsiblefor filtering out "missing" tiles via its shouldDiscardImage function.  If this functionreturns undefined, no tiles are filtered.  This function shouldnot be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -1524,7 +1484,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L354">Scene/ArcGisMapServerImageryProvider.js 354</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L360">Scene/ArcGisMapServerImageryProvider.js 360</a>
 </div>
 
 
@@ -1535,8 +1495,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
 
 
 <div class="description">
-    Gets the height of each tile, in pixels.  This function should
-not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
+    Gets the height of each tile, in pixels.  This function shouldnot be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -1585,7 +1544,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L335">Scene/ArcGisMapServerImageryProvider.js 335</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L341">Scene/ArcGisMapServerImageryProvider.js 341</a>
 </div>
 
 
@@ -1596,8 +1555,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
 
 
 <div class="description">
-    Gets the width of each tile, in pixels. This function should
-not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
+    Gets the width of each tile, in pixels. This function shouldnot be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -1646,7 +1604,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L411">Scene/ArcGisMapServerImageryProvider.js 411</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L417">Scene/ArcGisMapServerImageryProvider.js 417</a>
 </div>
 
 
@@ -1657,8 +1615,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
 
 
 <div class="description">
-    Gets the tiling scheme used by this provider.  This function should
-not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
+    Gets the tiling scheme used by this provider.  This function shouldnot be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -1707,7 +1664,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L310">Scene/ArcGisMapServerImageryProvider.js 310</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L316">Scene/ArcGisMapServerImageryProvider.js 316</a>
 </div>
 
 
@@ -1767,7 +1724,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L298">Scene/ArcGisMapServerImageryProvider.js 298</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L304">Scene/ArcGisMapServerImageryProvider.js 304</a>
 </div>
 
 
@@ -1827,7 +1784,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L525">Scene/ArcGisMapServerImageryProvider.js 525</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L531">Scene/ArcGisMapServerImageryProvider.js 531</a>
 </div>
 
 
@@ -1838,10 +1795,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
 
 
 <div class="description">
-    Gets a value indicating whether this imagery provider is using pre-cached tiles from the
-ArcGIS MapServer.  If the imagery provider is not yet ready (<a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a>), this function
-will return the value of `options.usePreCachedTilesIfAvailable`, even if the MapServer does
-not have pre-cached tiles.
+    Gets a value indicating whether this imagery provider is using pre-cached tiles from theArcGIS MapServer.  If the imagery provider is not yet ready (<a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a>), this functionwill return the value of `options.usePreCachedTilesIfAvailable`, even if the MapServer doesnot have pre-cached tiles.
 </div>
 
 
@@ -1899,7 +1853,7 @@ not have pre-cached tiles.
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L572">Scene/ArcGisMapServerImageryProvider.js 572</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L578">Scene/ArcGisMapServerImageryProvider.js 578</a>
 </div>
 
 
@@ -2094,7 +2048,7 @@ not have pre-cached tiles.
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L617">Scene/ArcGisMapServerImageryProvider.js 617</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L623">Scene/ArcGisMapServerImageryProvider.js 623</a>
 </div>
 
 
@@ -2106,9 +2060,7 @@ not have pre-cached tiles.
 
 
 <div class="description">
-    /**
-Asynchronously determines what features, if any, are located at a given longitude and latitude within
-a tile.  This function should not be called before <a href="ImageryProvider.html#ready"><code>ImageryProvider#ready</code></a> returns true.
+    /**Asynchronously determines what features, if any, are located at a given longitude and latitude withina tile.  This function should not be called before <a href="ImageryProvider.html#ready"><code>ImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -2272,9 +2224,7 @@ a tile.  This function should not be called before <a href="ImageryProvider.html
 
         
 <div class="param-desc">
-    A promise for the picked features that will resolve when the asynchronous
-                  picking completes.  The resolved value is an array of <a href="ImageryLayerFeatureInfo.html"><code>ImageryLayerFeatureInfo</code></a>
-                  instances.  The array may be empty if no features are found at the given location.
+    A promise for the picked features that will resolve when the asynchronous                  picking completes.  The resolved value is an array of <a href="ImageryLayerFeatureInfo.html"><code>ImageryLayerFeatureInfo</code></a>                  instances.  The array may be empty if no features are found at the given location.
 </div>
 
 
@@ -2339,7 +2289,7 @@ a tile.  This function should not be called before <a href="ImageryProvider.html
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L591">Scene/ArcGisMapServerImageryProvider.js 591</a>
+    <a href="https://github.com/AnalyticalGraphicsInc/cesium/blob/1.62/Source/Scene/ArcGisMapServerImageryProvider.js#L597">Scene/ArcGisMapServerImageryProvider.js 597</a>
 </div>
 
 
@@ -2351,8 +2301,7 @@ a tile.  This function should not be called before <a href="ImageryProvider.html
 
 
 <div class="description">
-    Requests the image for a given tile.  This function should
-not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
+    Requests the image for a given tile.  This function shouldnot be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>ArcGisMapServerImageryProvider#ready</code></a> returns true.
 </div>
 
 
@@ -2515,10 +2464,7 @@ not be called before <a href="ArcGisMapServerImageryProvider.html#ready"><code>A
 
         
 <div class="param-desc">
-    A promise for the image that will resolve when the image is available, or
-         undefined if there are too many active requests to the server, and the request
-         should be retried later.  The resolved image may be either an
-         Image or a Canvas DOM object.
+    A promise for the image that will resolve when the image is available, or         undefined if there are too many active requests to the server, and the request         should be retried later.  The resolved image may be either an         Image or a Canvas DOM object.
 </div>
 
 
